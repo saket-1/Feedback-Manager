@@ -30,4 +30,9 @@ public class FeedbackController {
     public ResponseEntity<Object> getRatingCount(){
         return  ResponseEntity.ok().body(feedbackService.getUsersFeedback());
     }
+
+    @GetMapping("/authenticate/feedbacks")
+    public ResponseEntity<List<Feedback>> getAllFeedbackLimit3() {
+        return new ResponseEntity<>(feedbackService.getAllFeedbackLimit3(), HttpStatus.OK);
+    }
 }

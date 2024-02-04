@@ -5,6 +5,9 @@ import com.techtitans.feedbackregistry.entity.Feedback;
 import com.techtitans.feedbackregistry.repository.FeedbackRepository;
 import com.techtitans.feedbackregistry.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +33,11 @@ public class FeedbackService {
         List<FeedbackRepository.RatingCountProjection> ratingCount = new ArrayList<>();
         feedbackRepository.findByUserId(userId).forEach(ratingCount::add);
         return ratingCount;
+    }
+
+    public List<Feedback> getAllFeedbackLimit3() {
+        Long userId = ((MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser().getId();
+        Pageable pageable = PageRequest.of(0, 3, Sort.by("createdTime").descending());
+        return feedbackRepository.findAllByUserIdOrderByCreatedTimeDesc(userId, pageable);
     }
 }
