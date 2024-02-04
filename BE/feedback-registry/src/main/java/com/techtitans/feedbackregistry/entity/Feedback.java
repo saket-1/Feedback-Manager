@@ -15,7 +15,7 @@ import java.time.Instant;
 @Table(name = "feedback_table")
 public class Feedback {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String comment;
     private Integer rating;
