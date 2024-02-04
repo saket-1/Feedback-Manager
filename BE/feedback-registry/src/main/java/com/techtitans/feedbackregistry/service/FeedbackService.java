@@ -20,6 +20,7 @@ public class FeedbackService {
     private FeedbackRepository feedbackRepository;
 
     public Feedback addFeedback(Feedback feedback) {
+        feedback.setFeedbackId(null);
         feedback.setCreatedTime(Timestamp.from(Instant.now()));
         return feedbackRepository.save(feedback);
     }

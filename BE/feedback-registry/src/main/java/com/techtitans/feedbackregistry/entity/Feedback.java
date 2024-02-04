@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -16,7 +15,7 @@ import java.time.Instant;
 public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long feedbackId;
     private String comment;
     private Integer rating;
     private Long userId;
